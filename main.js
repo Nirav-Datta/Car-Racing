@@ -23,7 +23,7 @@ car2_imgTag.onload = uploadCar2;
 car2_imgTag.src = car2_image;
 }
 function uploadBackground(){
-    ctx.drawImage(background_imgTag, 0, 0, canvas.width, canavas.height);
+    ctx.drawImage(background_imgTag, 0, 0, canvas.width, canvas.height);
 }
 function uploadCar1(){
     ctx.drawImage(car1_imgTag, car1_x, car1_y, car1_width, car1_height);
@@ -33,7 +33,7 @@ function uploadCar2(){
 }
 window.addEventListener("keydown", my_keydown);
 function my_keydown(e){
-    var keyPressed = e.keycode;
+    keyPressed = e.keyCode;
     console.log(keyPressed);
     if(keyPressed == '38'){
      car1_up();
@@ -59,14 +59,22 @@ function my_keydown(e){
         car2_down();
         console.log("S") 
     }
-    if(keyPressed == '68'){
+    if(keyPressed == '65'){
         car2_left();
      console.log("A")
     }
-    if(keyPressed == '65'){
+    if(keyPressed == '68'){
         car2_right();
      console.log("D")
     }
+    if(car1_x > 700){
+    console.log("car1 won");
+    document.getElementById('game_status').innerHTML = "Car 1 Won !!"
+}
+else if(car2_x > 700){
+    console.log("car2 won");
+    document.getElementById('game_status').innerHTML = "Car 2 Won !!"
+}
 }
 function car1_up(){
     if(car1_y >= 0){
@@ -106,7 +114,7 @@ function car1_right(){
 }
 function car2_up(){
     if(car2_y >= 0){
-        car1_2 = car2_y - 10;
+        car2_y = car2_y - 10;
         console.log("When W is pressed, X=" + car2_x + "| Y=" + car2_y);
         uploadBackground();
         uploadCar1();
@@ -134,17 +142,9 @@ function car2_left(){
 function car2_right(){
     if(car2_x <= 700){
         car2_x = car2_x + 10;
-        console.log("When A is pressed, X=" + car2_x + "| Y=" + car2_y);
+        console.log("When D is pressed, X=" + car2_x + "| Y=" + car2_y);
         uploadBackground();
         uploadCar1();
         uploadCar2();
     }
-}
-if(car1_x > 700){
-    console.log("car1 won");
-    document.getElementById('game_status').innerHTML = "Car 1 Won !!"
-}
-if(car2_x > 700){
-    console.log("car2 won");
-    document.getElementById('game_status').innerHTML = "Car 2 Won !!"
 }
